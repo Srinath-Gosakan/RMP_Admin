@@ -17,7 +17,8 @@ body {
 }
 
 img {
-  width: 400px; 
+  width: 100%; 
+  max-width: 400px; 
   object-fit: contain;
 }
 
@@ -81,14 +82,6 @@ button:active {
 .search-container input:focus {
   border-color: #4CAF50; 
   box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); 
-}
-
-.search-container input::placeholder {
-  color: #aaa;  
-}
-
-.search-container input:focus::placeholder {
-  color: transparent;  
 }
 
 .professors-grid {
@@ -167,13 +160,32 @@ button:active {
   color: #4CAF50;
 }
 
-/* Style for the placeholder image */
-.image-placeholder {
-  width: 180px;
-  height: 180px;
-  border-radius: 8px;
-  background-color: #f0f0f0; 
-  object-fit: cover; 
-  margin-bottom: 16px;
+.loader {
+  border: 6px solid #f3f3f3; 
+  border-top: 6px solid #4CAF50; 
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite; 
+  margin: 0 auto;
 }
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .flex-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-container input {
+    width: 80%;
+  }
+
+  .professors-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}

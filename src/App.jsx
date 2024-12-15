@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from '/images.png';
 import './App.css';
-import './Components/ProfCard.jsx';
 import ProfCard from './Components/ProfCard.jsx';
 import axios from 'axios';
 
@@ -11,12 +10,7 @@ const App = () => {
   const [searchQuery, setSearchQuery] = useState('');  
 
   useEffect(() => {
-    try {
-      fetchItems();
-      console.log(professors);
-    } catch (err) {
-      console.log(err);
-    }
+    fetchItems();
   }, []);
 
   const fetchItems = async () => {
@@ -72,9 +66,9 @@ const App = () => {
         </div>
       ) : (
         <div className="professors-grid">
-          {filteredProfessors.map((prof) => {
-            return <ProfCard key={prof._id} name={prof.name} profID={prof.profID} rating={prof.rating} feedbacks={prof.feedback} />;
-          })}
+          {filteredProfessors.map((prof) => (
+            <ProfCard key={prof._id} name={prof.name} profID={prof.profID} rating={prof.rating} feedbacks={prof.feedback} />
+          ))}
         </div>
       )}
     </>
