@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import placeholder from '/placeholder_image.jpg';
+import default_dp from '/default.jpg';
 
 const ProfCard = ({ name, profID, rating, feedbacks }) => {
-  const [image, setImage] = useState(null);  // Store the fetched image
-  const [imageLoaded, setImageLoaded] = useState(false);  // Track image load status
+  const [image, setImage] = useState(null);  
+  const [imageLoaded, setImageLoaded] = useState(false);  
 
   useEffect(() => {
     fetchImage();
@@ -31,20 +32,18 @@ const ProfCard = ({ name, profID, rating, feedbacks }) => {
   };
 
   const handleImageLoad = () => {
-    setImageLoaded(true);  // Set to true when the image is fully loaded
+    setImageLoaded(true); 
   };
 
   return (
     <div className='card'>
-      {/* Show the placeholder image until the actual image is loaded */}
       <img
-        src={imageLoaded ? image : '/placeholder-image.jpg'}  // Use placeholder image if not loaded
+        src={imageLoaded ? image : default_dp}  
         alt="Professor"
-        onLoad={handleImageLoad}  // Trigger image load completion handler
-        style={{ display: imageLoaded ? 'block' : 'none' }}  // Hide image until it's loaded
+        onLoad={handleImageLoad}  
+        style={{ display: imageLoaded ? 'block' : 'none' }}  
       />
       
-      {/* Placeholder image is shown while the actual image is loading */}
       {!imageLoaded && <img src={placeholder} alt="Loading" className="image-placeholder" />}
 
       <h2>{name}</h2>

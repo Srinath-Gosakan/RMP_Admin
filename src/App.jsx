@@ -8,7 +8,7 @@ import axios from 'axios';
 const App = () => {
   const [professors, setProfessors] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');  // New state to store the search query
+  const [searchQuery, setSearchQuery] = useState('');  
 
   useEffect(() => {
     try {
@@ -42,7 +42,6 @@ const App = () => {
     }
   };
 
-  // Filter professors based on the search query
   const filteredProfessors = professors.filter(prof =>
     prof.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -58,13 +57,12 @@ const App = () => {
       </div>
       <hr />
 
-      {/* Search Bar */}
       <div className="search-container">
         <input
           type="text"
           placeholder="Search by professor's name..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}  // Update the search query on input change
+          onChange={(e) => setSearchQuery(e.target.value)}  
         />
       </div>
 
