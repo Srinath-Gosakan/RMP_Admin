@@ -68,27 +68,28 @@ button:active {
 
 .search-container input {
   width: 300px;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
-  border: 2px solid #ddd;
+  border: 2px solid #ddd;  /* Lighter border color */
   border-radius: 25px;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
+  background-color: #ffffff; /* White background to match other elements */
+  color: #333; /* Text color matching the body */
 }
 
 .search-container input:focus {
-  border-color: #4CAF50; 
-  box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); 
+  border-color: #4CAF50; /* Green border on focus */
+  box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Green glow on focus */
 }
 
 .search-container input::placeholder {
-  color: #aaa; 
+  color: #aaa;  /* Lighter placeholder color */
 }
 
 .search-container input:focus::placeholder {
-  color: transparent;
+  color: transparent;  /* Hide placeholder text when focused */
 }
-
 
 .professors-grid {
   margin-top: 40px;
@@ -165,3 +166,14 @@ button:active {
   font-weight: bold;
   color: #4CAF50;
 }
+
+/* Style for the placeholder image */
+.image-placeholder {
+  width: 180px;
+  height: 180px;
+  border-radius: 8px;
+  background-color: #f0f0f0; 
+  object-fit: cover; 
+  margin-bottom: 16px;
+}
+

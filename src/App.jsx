@@ -22,7 +22,7 @@ const App = () => {
   const fetchItems = async () => {
     setLoading(true); 
     try {
-      const res = await axios.get('http://localhost:5000/api/professors');
+      const res = await axios.get('https://rmp-backend.vercel.app/api/professors');
       setProfessors(res.data);
     } catch (error) {
       console.error("Error fetching professors:", error);
@@ -33,7 +33,7 @@ const App = () => {
 
   const handleScrape = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/scrape');
+      const res = await axios.post('https://rmp-backend.vercel.app/api/scrape');
       alert(res.data.message);
       fetchItems();
     } catch (error) {
