@@ -2,44 +2,65 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f9; 
-  color: #333;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-.flex-container {
+:root[data-theme='light'] {
+  --background-color: #f8f9fa;
+  --text-color: #212529;
+  --header-background: #ffffff;
+  --button-background: #007bff;
+  --button-hover: #0056b3;
+  --card-background: #ffffff;
+  --card-border: #e9ecef;
+}
+
+:root[data-theme='dark'] {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --header-background: #1e1e1e;
+  --button-background: #1e88e5;
+  --button-hover: #1565c0;
+  --card-background: #1e1e1e;
+  --card-border: #333333;
+}
+
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--header-background);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-img {
-  width: 100%; 
-  max-width: 400px; 
+.logo {
+  width: 150px; /* Adjusted for better alignment */
   object-fit: contain;
 }
 
-h2 {
-  color: #333;
+.welcome-text {
+  color: var(--text-color);
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 600; /* Consistent font weight */
 }
 
-.contents {
+.main-content {
+  padding: 20px;
+}
+
+.scrape-container {
   display: flex;
-  height: 150px;
   justify-content: center;
-  align-items: center;
-  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
-button {
+.scrape-button {
   height: 50px;
-  width: 200px;
-  background-color: #4CAF50;
+  width: 220px;
+  background-color: var(--button-background);
   color: white;
   font-size: 16px;
   font-weight: bold;
@@ -50,15 +71,10 @@ button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-  background-color: #45a049;
+.scrape-button:hover {
+  background-color: var(--button-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-button:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .search-container {
@@ -67,27 +83,26 @@ button:active {
   margin-bottom: 20px;
 }
 
-.search-container input {
+.search-input {
   width: 300px;
   padding: 12px;
   font-size: 16px;
-  border: 2px solid #ddd;  
+  border: 1px solid var(--card-border);
   border-radius: 25px;
   outline: none;
   transition: all 0.3s ease;
-  background-color: #ffffff; 
-  color: #333; 
+  background-color: var(--card-background);
+  color: var(--text-color);
 }
 
-.search-container input:focus {
-  border-color: #4CAF50; 
-  box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); 
+.search-input:focus {
+  border-color: var(--button-background);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .professors-grid {
-  margin-top: 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
   padding: 0 20px;
 }
@@ -95,25 +110,22 @@ button:active {
 .card {
   border-radius: 12px;
   width: 280px;
-  height: 380px;
+  height: auto; /* Adjusted to allow flexible height */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: #fff;
+  background-color: var(--card-background);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-  font-family: 'Arial', sans-serif;
-  border: 2px solid transparent;
-  background-clip: padding-box;
+  border: 1px solid var(--card-border);
 }
 
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  border-image: linear-gradient(to right, #28a745, #32cd32);
-  border-image-slice: 1;
+  border-color: var(--button-background);
 }
 
 .card img {
@@ -126,15 +138,15 @@ button:active {
 .card h2 {
   margin: 8px 0;
   text-align: center;
-  color: #333;
+  color: var(--text-color);
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 600; /* Consistent font weight */
 }
 
 .card .rating,
 .card .feedbacks {
   font-size: 0.9rem;
-  color: #555;
+  color: var(--text-color);
   text-align: center;
 }
 
@@ -144,7 +156,7 @@ button:active {
 
 .card .feedbacks {
   font-style: italic;
-  color: #777;
+  color: #6c757d;
   max-height: 100px;
   overflow-y: auto;
   padding-top: 5px;
@@ -152,22 +164,19 @@ button:active {
 
 .loading-indicator {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #4CAF50;
 }
 
 .loader {
-  border: 6px solid #f3f3f3; 
-  border-top: 6px solid #4CAF50; 
+  border: 6px solid var(--card-border);
+  border-top: 6px solid var(--button-background);
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  animation: spin 1s linear infinite; 
-  margin: 0 auto;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
@@ -175,17 +184,42 @@ button:active {
   100% { transform: rotate(360deg); }
 }
 
-@media (max-width: 768px) {
-  .flex-container {
-    flex-direction: column;
-    align-items: center;
-  }
+.toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
 
-  .search-container input {
-    width: 80%;
-  }
+.toggle-button {
+  appearance: none;
+  outline: none;
+  width: 50px;
+  height: 25px;
+  background-color: var(--card-border);
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-  .professors-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  }
+.toggle-button:before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--card-background);
+  border-radius: 50%;
+  top: 2.5px;
+  left: 5px;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-button:checked {
+  background-color: var(--button-background);
+}
+
+.toggle-button:checked:before {
+  transform: translateX(25px);
 }

@@ -3,26 +3,26 @@ import axios from 'axios';
 import default_dp from '/default.jpg';
 
 const ProfCard = ({ name, profID, rating, feedbacks }) => {
-  const [image, setImage] = useState(null);  
-  const [imageLoaded, setImageLoaded] = useState(false);  
+  const [image, setImage] = useState(default_dp); 
   const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    fetchImage();
-  }, []);
+    const fetchImage = async () => {
+      try {
+        const res = await axios.get(`https://rmp-backend.vercel.app/api/professor/${profID}/image`, {
+          responseType: 'arraybuffer',
+        });
+        const base64Image = `data:image/jpeg;base64,${arrayBufferToBase64(res.data)}`;
+        setImage(base64Image);
+      } catch (err) {
+        console.error(`Error fetching image for professor ${profID}:`, err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const fetchImage = async () => {
-    try {
-      setLoading(true); 
-      const res = await axios.get(`https://rmp-backend.vercel.app/api/professor/${profID}/image`, { responseType: 'arraybuffer' });
-      const base64Image = arrayBufferToBase64(res.data);
-      setImage(`data:image/jpeg;base64,${base64Image}`);
-    } catch (err) {
-      console.error("Error fetching image:", err);
-    } finally {
-      setLoading(false); 
-    }
-  };
+    fetchImage();
+  }, [profID]);
 
   const arrayBufferToBase64 = (buffer) => {
     let binary = '';
@@ -34,23 +34,18 @@ const ProfCard = ({ name, profID, rating, feedbacks }) => {
     return window.btoa(binary);
   };
 
-  const handleImageLoad = () => {
-    setImageLoaded(true); 
-  };
-
   return (
     <div className='card'>
       {loading ? (
-        <div className="loader"></div> 
+        <div className="loader"></div>
       ) : (
         <img
-          src={imageLoaded ? image : default_dp}  
-          alt="Professor"
-          onLoad={handleImageLoad}  
-          style={{ display: imageLoaded ? 'block' : 'none' }}  
+          src={image}
+          alt={`Professor ${name}`}
+          loading="lazy"
+          className="professor-image"
         />
       )}
-
       <h2>{name}</h2>
       <h2>Rating: {rating}⭐</h2>
       <h2>{feedbacks}</h2>
