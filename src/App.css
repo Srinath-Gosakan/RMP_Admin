@@ -277,6 +277,7 @@ body {
   .toggle-button {
     width: 45px; 
     height: 22px;
+    margin-right: 5px;
   }
 
   .toggle-button:before {
@@ -336,6 +337,7 @@ body {
   .toggle-button {
     width: 40px; 
     height: 20px;
+    margin-right: 5px;
   }
 
   .toggle-button:before {
