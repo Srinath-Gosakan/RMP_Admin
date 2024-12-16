@@ -224,18 +224,122 @@ body {
   transform: translateX(25px);
 }
 
-
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
     align-items: center;
+    padding: 10px;
+  }
+
+  .logo {
+    width: 100px; 
+  }
+
+  .welcome-text {
+    font-size: 20px; 
   }
 
   .search-input {
-    width: 80%;
+    width: 90%; 
+    padding: 10px;
+    font-size: 14px; 
+  }
+
+  .scrape-button {
+    width: 180px; 
   }
 
   .professors-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+    gap: 20px;
+  }
+
+  .card {
+    width: 100%; 
+    height: auto; 
+    padding: 15px;
+  }
+
+  .card img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .card h2 {
+    font-size: 16px; 
+  }
+
+  .card .rating,
+  .card .feedbacks {
+    font-size: 0.8rem; 
+  }
+
+  .toggle-button {
+    width: 45px; 
+    height: 22px;
+  }
+
+  .toggle-button:before {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 8px;
+  }
+
+  .logo {
+    width: 80px; 
+  }
+
+  .welcome-text {
+    font-size: 18px; 
+  }
+
+  .search-input {
+    width: 95%; 
+    padding: 8px;
+    font-size: 12px; 
+  }
+
+  .scrape-button {
+    width: 160px;
+    font-size: 14px;
+  }
+
+  .professors-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card {
+    width: 100%; 
+    padding: 10px;
+  }
+
+  .card img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .card h2 {
+    font-size: 14px;
+  }
+
+  .card .rating,
+  .card .feedbacks {
+    font-size: 0.7rem;
+  }
+
+  .toggle-button {
+    width: 40px; 
+    height: 20px;
+  }
+
+  .toggle-button:before {
+    width: 16px;
+    height: 16px;
   }
 }
