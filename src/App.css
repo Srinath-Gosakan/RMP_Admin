@@ -37,21 +37,21 @@ body {
 }
 
 .logo {
-  width: 150px; /* Adjusted for better alignment */
+  width: 150px; 
   object-fit: contain;
 }
 
 .welcome-text {
   color: var(--text-color);
   font-size: 24px;
-  font-weight: 600; /* Consistent font weight */
+  font-weight: 600; 
 }
 
 .main-content {
   padding: 20px;
 }
 
-.scrape-container {
+.scrape-button-container {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
