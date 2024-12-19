@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
-import default_dp from '/default.jpg';
+import default_dp from '/default.jpg'; 
 import { ImageCacheContext } from '../App';
 
 const ProfCard = ({ name, profID, rating, feedbacks }) => {
-  const [image, setImage] = useState(default_dp);
+  const [image, setImage] = useState(default_dp); 
   const [loading, setLoading] = useState(true);
   const cardRef = useRef();
   const imageCache = useContext(ImageCacheContext);
@@ -22,13 +22,14 @@ const ProfCard = ({ name, profID, rating, feedbacks }) => {
         entries.forEach(async (entry) => {
           if (entry.isIntersecting) {
             try {
+              // Call backend API to get Cloudinary URL for professor's image
               const res = await axios.get(
-                `https://rmp-backend.vercel.app/api/professor/${profID}/image`,
-                { responseType: 'arraybuffer' }
+                `https://rmp-backend.vercel.app/api/professor/${profID}/image`
               );
-              const base64Image = `data:image/jpeg;base64,${arrayBufferToBase64(res.data)}`;
-              imageCache.set(profID, base64Image); // Cache the image
-              setImage(base64Image);
+
+              const cloudinaryUrl = res.data.imageUrl; 
+              imageCache.set(profID, cloudinaryUrl); 
+              setImage(cloudinaryUrl);
             } catch (err) {
               console.error(`Error fetching image for professor ${profID}:`, err);
             } finally {
@@ -37,23 +38,13 @@ const ProfCard = ({ name, profID, rating, feedbacks }) => {
           }
         });
       },
-      { threshold: 0.1 } // Trigger when 10% of the card is visible
+      { threshold: 0.1 }
     );
 
     if (cardRef.current) observer.observe(cardRef.current);
 
-    return () => observer.disconnect(); // Cleanup observer on unmount
+    return () => observer.disconnect();
   }, [profID, imageCache]);
-
-  const arrayBufferToBase64 = (buffer) => {
-    let binary = '';
-    const bytes = new Uint8Array(buffer);
-    const length = bytes.byteLength;
-    for (let i = 0; i < length; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-  };
 
   return (
     <div className="card" ref={cardRef}>

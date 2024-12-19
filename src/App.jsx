@@ -10,7 +10,8 @@ const App = () => {
   const [theme, setTheme] = useState('light');
   const [professors, setProfessors] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [scraping, setScraping] = useState(false); // State to track scrape status
+  const [scraping, setScraping] = useState(false);
+  const [progress, setProgress] = useState(0); // New state for progress
   const [searchTerm, setSearchTerm] = useState('');
 
   // Fetch professors only once
@@ -26,15 +27,27 @@ const App = () => {
     }
   }, []);
 
-  // Scrape professors data from university website (replace with actual scraping logic)
+  // Scrape professors data with a progress update
   const scrapeProfessors = async () => {
     setScraping(true);
+    setProgress(0); // Reset progress on new scrape
+
     try {
-      // Mock scraping request (replace with real backend API endpoint)
-      const res = await axios.get('https://rmp-backend.vercel.app/api/scrape');
+      const res = await axios.post('https://rmp-backend.vercel.app/api/scrape');
       if (res.status === 200) {
         setProfessors(res.data);
       }
+
+      // Simulate progress for demo
+      let progressInterval = setInterval(() => {
+        setProgress((oldProgress) => {
+          if (oldProgress >= 100) {
+            clearInterval(progressInterval);
+            return 100;
+          }
+          return oldProgress + 10; // Increase progress
+        });
+      }, 500);
     } catch (error) {
       console.error('Error scraping professors:', error);
     } finally {
@@ -112,6 +125,14 @@ const App = () => {
               {scraping ? 'Scraping...' : 'Scrape Professors'}
             </button>
           </div>
+
+          {/* Scraping Progress Bar */}
+          {scraping && (
+            <div className="scraping-progress-container">
+              <div className="scraping-progress-bar" style={{ width: `${progress}%` }} />
+              <div className="scraping-progress-text">{progress}%</div>
+            </div>
+          )}
 
           {/* Loading Indicator */}
           {loading && (

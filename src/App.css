@@ -111,7 +111,7 @@ body {
 .card {
   border-radius: 12px;
   width: 250px;
-  height: auto; /* Adjusted to allow flexible height */
+  height: auto; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -141,7 +141,7 @@ body {
   text-align: center;
   color: var(--text-color);
   font-size: 18px;
-  font-weight: 600; /* Consistent font weight */
+  font-weight: 600;
 }
 
 .card .rating,
@@ -225,6 +225,34 @@ body {
   transform: translateX(25px);
 }
 
+/* Scraping Progress Bar */
+.scraping-progress-container {
+  width: 100%;
+  height: 20px;
+  background-color: var(--card-border);
+  border-radius: 10px;
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scraping-progress-bar {
+  width: 0;
+  height: 100%;
+  background-color: var(--button-background);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.scraping-progress-text {
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: row;
@@ -237,114 +265,6 @@ body {
   }
 
   .welcome-text {
-    font-size: 20px; 
-  }
-
-  .search-input {
-    width: 90%; 
-    padding: 10px;
-    font-size: 14px; 
-  }
-
-  .scrape-button {
-    width: 180px; 
-  }
-
-  .professors-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
-    gap: 20px;
-  }
-
-  .card {
-    width: 100%; 
-    height: auto; 
-    padding: 15px;
-  }
-
-  .card img {
-    width: 160px;
-    height: 160px;
-  }
-
-  .card h2 {
-    font-size: 16px; 
-  }
-
-  .card .rating,
-  .card .feedbacks {
-    font-size: 0.8rem; 
-  }
-
-  .toggle-button {
-    width: 45px; 
-    height: 22px;
-    margin-right: 5px;
-  }
-
-  .toggle-button:before {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-@media (max-width: 480px) {
-  .header {
-    padding: 8px;
-  }
-
-  .logo {
-    width: 80px; 
-  }
-
-  .welcome-text {
-    font-size: 18px; 
-  }
-
-  .search-input {
-    width: 95%; 
-    padding: 8px;
-    font-size: 12px; 
-  }
-
-  .scrape-button {
-    width: 160px;
-    font-size: 14px;
-  }
-
-  .professors-grid {
-    grid-template-columns: 0.75fr;
-    gap: 15px;
-    width: 100%;
-    margin-left: 3%;
-  }
-
-  .card {
-    width: 100%; 
-    padding: 10px;
-  }
-
-  .card img {
-    width: 140px;
-    height: 140px;
-  }
-
-  .card h2 {
-    font-size: 14px;
-  }
-
-  .card .rating,
-  .card .feedbacks {
-    font-size: 0.7rem;
-  }
-
-  .toggle-button {
-    width: 40px; 
-    height: 20px;
-    margin-right: 5px;
-  }
-
-  .toggle-button:before {
-    width: 16px;
-    height: 16px;
+    font-size: 18px;
   }
 }
